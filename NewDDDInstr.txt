@@ -16,7 +16,7 @@ IMPORTANT NOTE: You need to be logged into Travis Clark’s AWS Management Conso
 	- hold down “boot” button on ESP32 module during compilation (Connecting….)  until writing starts to occur
 
 FOR SMS UPDATES:
-- If you want to receive text message updates, an Amazon SNS Subscription Endpoint must be added with your number. It is best to use a third-party text messaging app to generate a Canadian area code number as there are some issues associated with US numbers. (NOTE TO FUTURE TRAV: download this app on the KSI test iPods and see if you can log into “TextFree” username: traviskate3
+- If you want to receive text message updates, an Amazon SNS Subscription Endpoint must be added with your number. It is best to use a third-party text messaging app to generate a Canadian area code number as there are some issues associated with US numbers.
 
 
 FOR DB CONNECTION:
