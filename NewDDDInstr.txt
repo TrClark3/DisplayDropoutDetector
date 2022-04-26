@@ -1,0 +1,25 @@
+Creating/Registering a new DDD:
+
+IMPORTANT NOTE: You need to be logged into Travis Clark’s AWS Management Console for this to occur. Please contact me (Travis) for these credentials.
+
+- Create a “thing” (AWS)
+- Copy “DDD1” policy and create a new one with the corresponding device name and attach the policy to the newly generated certificate (AWS)
+	- Under Policy Document
+	- Click on JSON tab and paste the JSON policy copied from DDD1_Policy
+	- Change the "Action": "iot:Connect" portion so that after the client part is uses the new DDDx
+	- Attach the new policy
+- Download the “device certificate” and the “device private key” this information will be used in a DDDx header file for the Arduino code
+- In the .ino, change the include statement to include this newly created .h file
+- When compiling the sketch
+	- Tools > Board: “DOIT ESP32 DEVKIT V1”
+	- Make sure port recognizes the device, should be something like: /dev/cu.SLAB_USBtoUART
+	- hold down “boot” button on ESP32 module during compilation (Connecting….)  until writing starts to occur
+
+FOR SMS UPDATES:
+- If you want to receive text message updates, an Amazon SNS Subscription Endpoint must be added with your number. It is best to use a third-party text messaging app to generate a Canadian area code number as there are some issues associated with US numbers.
+
+FOR DB CONNECTION:
+- If you want data to be stored in DynamoDB (AWS Service):
+- Go to DynamoDB dashboard
+- Navigate to “Tables”
+- Create Table: Table name MUST be the same as the registered “thing name”, so DDDx 
