@@ -173,10 +173,6 @@ incomingString = "";
   darkness = analogRead(LDR);
   delay(2);
 
-//check for serial commands
-//  if (Serial.available() > 0)
-//    serialdata();
-
   //dropout if brightness is darker than initial reference value
   if (darkness < val) {
     counter++;
@@ -214,7 +210,7 @@ incomingString = "";
 //      ledcWrite(buzzer,0);     // Stop sound
 //      delay(10);
       
-    //makes sure that the current dropout is only counted as one dropout:
+    //dropout counted only as one
     while (darkness < val ) {
       getElapsedTime(); 
       darkness=analogRead(LDR);
@@ -223,19 +219,10 @@ incomingString = "";
       digitalWrite(LED, HIGH);
       delay(200);
      
-//      //check for serial commands during dropout
-//      if (Serial.available() > 0)
-//        serialdata();
     }
   }
   client.loop();
   delay(100);
-//  Serial.print("reference val ");
-//  Serial.print(val);
-//  Serial.print("read ");
-//  Serial.print(darkness);
-//  Serial.print('\n');
-//  delay(2000); //Uncomment to debug LDR issues and play with threshold
 }
 
 void getElapsedTime() {
@@ -248,66 +235,3 @@ void getElapsedTime() {
       delay(150);
       display.display();
 }
-
-// for serial monitor control
-//void serialdata() {
-//  if (Serial.available() > 0) {
-//    delay(50);
-//    // read serial command
-//    incomingString = Serial.readString();
-//    incomingString.trim();
-//
-//    if (incomingString == "reset") {
-//      counter = 0;
-//      for (int i= 0; i<=99; i++)
-//        timeStamps[i]=-1;
-//      digitalWrite(LED, LOW);
-//      display.setTextColor(WHITE, BLACK); // overwrite previous value
-//      display.setCursor(20, 20);
-//      display.println("0");
-//      display.display();
-//      Serial.println("reset successful (not timer)");
-//    }
-//    else if (incomingString == "d") {
-//      Serial.println(counter);
-//    }
-//
-//    else if (incomingString == "calibration") {
-//      val = analogRead(LDR) - sens;
-//      Serial.println("calibration finished");
-//    }
-//
-//    else if (incomingString == "stamps") {
-//      String stamps="";
-//      for (int i= 0; i<=99; i++) {
-//        if (timeStamps[i]!=-1)
-//          stamps += String(timeStamps[i])+", ";
-//        else 
-//          break;
-//        }    
-//      Serial.println(stamps);
-//    }
-//
-//    else if (incomingString == "t") {
-//      unsigned long CurrentTime = millis();
-//      double ElapsedTime = (int)(((CurrentTime - StartTime) / 1000) / 60);
-//      String print1 = (String)ElapsedTime + " min";
-//      Serial.println(print1);
-//    }
-//
-//    else if (incomingString == "commands") {
-//      Serial.println("reset        to reset counter (does not reset timer)");
-//      Serial.println("d            get value of dropout counter");
-//      Serial.println("calibration  set current brightness as default");
-//      Serial.println("stamps       get time stamps of Various Dropouts (1st 100 stamps only)");
-//      Serial.println("t            get time since boot up of the device");
-//      Serial.println("ver          get software version");
-//      Serial.println("commands     see commands");
-//    }
-//
-//    else {
-//      Serial.println("Command not found");
-//    }
-//  }
-
-//}
